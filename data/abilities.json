@@ -1,0 +1,108 @@
+{
+  "abilities": [
+    {
+      "id": "basic_attack",
+      "name": "Basic Attack",
+      "description": "A basic attack using your equipped weapon",
+      "type": "offensive",
+      "element": "kinetic",
+      "damage": 25,
+      "cooldown": 0,
+      "superCost": 0,
+      "isPrime": false,
+      "isDetonator": false,
+      "primeEffect": null,
+      "detonateEffect": null
+    },
+    {
+      "id": "thermal_burn",
+      "name": "Thermal Burn",
+      "description": "Applies a burn effect that deals damage over time",
+      "type": "offensive",
+      "element": "thermal",
+      "damage": 20,
+      "cooldown": 3,
+      "superCost": 0,
+      "isPrime": true,
+      "isDetonator": false,
+      "primeEffect": {
+        "type": "burn",
+        "duration": 3,
+        "damagePerTurn": 15,
+        "element": "thermal"
+      },
+      "detonateEffect": null
+    },
+    {
+      "id": "thermal_burst",
+      "name": "Thermal Burst",
+      "description": "Detonates burn effects for massive damage",
+      "type": "offensive",
+      "element": "thermal",
+      "damage": 40,
+      "cooldown": 4,
+      "superCost": 0,
+      "isPrime": false,
+      "isDetonator": true,
+      "primeEffect": null,
+      "detonateEffect": {
+        "triggers": ["burn"],
+        "bonusDamage": 50,
+        "element": "thermal"
+      }
+    },
+    {
+      "id": "shield_boost",
+      "name": "Shield Boost",
+      "description": "Restores shields to the target",
+      "type": "sustain",
+      "element": "kinetic",
+      "damage": 0,
+      "cooldown": 5,
+      "superCost": 50,
+      "isPrime": false,
+      "isDetonator": false,
+      "primeEffect": null,
+      "detonateEffect": null,
+      "healing": 30
+    },
+    {
+      "id": "arc_overload",
+      "name": "Arc Overload",
+      "description": "Chance to stun the target",
+      "type": "offensive",
+      "element": "arc",
+      "damage": 30,
+      "cooldown": 4,
+      "superCost": 0,
+      "isPrime": true,
+      "isDetonator": false,
+      "primeEffect": {
+        "type": "overload",
+        "duration": 1,
+        "stunChance": 0.3,
+        "element": "arc"
+      },
+      "detonateEffect": null
+    },
+    {
+      "id": "void_suppress",
+      "name": "Void Suppress",
+      "description": "Reduces target's action speed",
+      "type": "offensive",
+      "element": "void",
+      "damage": 25,
+      "cooldown": 3,
+      "superCost": 0,
+      "isPrime": true,
+      "isDetonator": false,
+      "primeEffect": {
+        "type": "suppress",
+        "duration": 2,
+        "speedReduction": 0.5,
+        "element": "void"
+      },
+      "detonateEffect": null
+    }
+  ]
+}

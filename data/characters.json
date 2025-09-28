@@ -1,0 +1,60 @@
+{
+  "characters": [
+    {
+      "id": "nova",
+      "name": "Nova",
+      "class": "vanguard",
+      "element": "kinetic",
+      "stats": {
+        "hp": 120,
+        "sh": 80,
+        "sp": 100,
+        "defense": 15
+      },
+      "abilities": ["basic_attack", "shield_boost"],
+      "description": "A defensive specialist focused on protection"
+    },
+    {
+      "id": "tech",
+      "name": "Tech",
+      "class": "technomancer",
+      "element": "arc",
+      "stats": {
+        "hp": 100,
+        "sh": 90,
+        "sp": 120,
+        "defense": 10
+      },
+      "abilities": ["basic_attack", "arc_overload"],
+      "description": "An electrical specialist with shield-breaking abilities"
+    },
+    {
+      "id": "ember",
+      "name": "Ember",
+      "class": "pyromancer",
+      "element": "thermal",
+      "stats": {
+        "hp": 110,
+        "sh": 70,
+        "sp": 110,
+        "defense": 12
+      },
+      "abilities": ["basic_attack", "thermal_burn", "thermal_burst"],
+      "description": "A fire specialist focused on damage over time"
+    },
+    {
+      "id": "void",
+      "name": "Void",
+      "class": "voidrunner",
+      "element": "void",
+      "stats": {
+        "hp": 90,
+        "sh": 100,
+        "sp": 130,
+        "defense": 8
+      },
+      "abilities": ["basic_attack", "void_suppress"],
+      "description": "A shadow specialist with debuff abilities"
+    }
+  ]
+}

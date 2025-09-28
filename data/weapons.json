@@ -1,0 +1,64 @@
+{
+  "weapons": [
+    {
+      "id": "kinetic_railgun",
+      "name": "Kinetic Railgun",
+      "description": "A high-velocity kinetic weapon",
+      "element": "kinetic",
+      "damage": 25,
+      "icon": "",
+      "modifiers": {
+        "basicMult": 1.0,
+        "totalDamageMult": 1.0,
+        "maxShBonus": 0,
+        "maxHpBonus": 0
+      },
+      "unlocked": true
+    },
+    {
+      "id": "arc_blaster",
+      "name": "Arc Blaster",
+      "description": "An energy weapon that excels against shields",
+      "element": "arc",
+      "damage": 22,
+      "icon": "",
+      "modifiers": {
+        "basicMult": 1.0,
+        "totalDamageMult": 1.0,
+        "maxShBonus": 10,
+        "maxHpBonus": 0
+      },
+      "unlocked": false
+    },
+    {
+      "id": "thermal_lance",
+      "name": "Thermal Lance",
+      "description": "A heat-based weapon that burns through armor",
+      "element": "thermal",
+      "damage": 23,
+      "icon": "",
+      "modifiers": {
+        "basicMult": 1.0,
+        "totalDamageMult": 1.0,
+        "maxShBonus": 0,
+        "maxHpBonus": 5
+      },
+      "unlocked": false
+    },
+    {
+      "id": "void_projector",
+      "name": "Void Projector",
+      "description": "A mysterious weapon that pierces defenses",
+      "element": "void",
+      "damage": 24,
+      "icon": "",
+      "modifiers": {
+        "basicMult": 1.0,
+        "totalDamageMult": 1.0,
+        "maxShBonus": 0,
+        "maxHpBonus": 0
+      },
+      "unlocked": false
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://6q08nv3ho1tj"]
+
+[ext_resource type="Texture2D" uid="uid://ch2ph6s1qi7rr" path="res://Images/Vanguard-rwFHslqc.png" id="1_el5ou"]
+[ext_resource type="Script" uid="uid://b3756bqlx3agg" path="res://Sprites/sprite_2d.gd" id="2_el5ou"]
+
+[node name="Main Scene" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(572.99994, 326.99997)
+scale = Vector2(5, 5)
+texture = ExtResource("1_el5ou")
+script = ExtResource("2_el5ou")

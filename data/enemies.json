@@ -1,0 +1,60 @@
+{
+  "enemies": [
+    {
+      "id": "voidborn_drone",
+      "name": "Voidborn Drone",
+      "faction": "voidborn",
+      "element": "void",
+      "stats": {
+        "hp": 60,
+        "shields": 20,
+        "speed": 1.0,
+        "damage": 15
+      },
+      "abilities": ["basic_attack"],
+      "description": "A basic Voidborn construct"
+    },
+    {
+      "id": "syndicate_mercenary",
+      "name": "Syndicate Mercenary",
+      "faction": "syndicate",
+      "element": "kinetic",
+      "stats": {
+        "hp": 80,
+        "shields": 30,
+        "speed": 1.2,
+        "damage": 20
+      },
+      "abilities": ["basic_attack"],
+      "description": "A well-equipped mercenary"
+    },
+    {
+      "id": "accord_soldier",
+      "name": "Accord Soldier",
+      "faction": "accord",
+      "element": "arc",
+      "stats": {
+        "hp": 70,
+        "shields": 40,
+        "speed": 1.1,
+        "damage": 18
+      },
+      "abilities": ["basic_attack"],
+      "description": "A disciplined military unit"
+    },
+    {
+      "id": "outlaw_scavenger",
+      "name": "Outlaw Scavenger",
+      "faction": "outlaws",
+      "element": "thermal",
+      "stats": {
+        "hp": 65,
+        "shields": 15,
+        "speed": 1.3,
+        "damage": 22
+      },
+      "abilities": ["basic_attack"],
+      "description": "A fast and aggressive scavenger"
+    }
+  ]
+}
