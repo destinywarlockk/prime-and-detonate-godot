@@ -53,6 +53,8 @@ func _ready():
 	BattleModel.turn_started.connect(_on_turn_started)
 	BattleModel.turn_ended.connect(_on_turn_ended)
 	BattleModel.battle_over.connect(_on_battle_over)
+	BattleModel.prime_effect_applied.connect(_on_prime_effect_applied)
+	BattleModel.prime_effect_detonated.connect(_on_prime_effect_detonated)
 
 	# Wire buttons
 	attack_btn.pressed.connect(_on_attack_pressed)
@@ -66,6 +68,9 @@ func _ready():
 
 	# Start
 	BattleModel.start_battle(all)
+	
+	# Update prime effect displays
+	_update_all_prime_displays()
 	
 	# Start star twinkling effects
 	_start_star_twinkling()
@@ -153,6 +158,9 @@ func _on_turn_started(actor: Actor) -> void:
 	is_button_navigation_active = false
 	button_index = 0
 	_highlight_selected_button()
+	
+	# Update prime effect displays for turn changes
+	_update_all_prime_displays()
 
 	if not is_player:
 		# Enemy AI: wait, then pick target and attack
@@ -712,3 +720,91 @@ func _animate_ui_transition() -> void:
 		tween.tween_property(buttons_container, "scale", Vector2(0.9, 0.9), 0.1)
 		tween.tween_property(buttons_container, "scale", Vector2(1.1, 1.1), 0.1)
 		tween.tween_property(buttons_container, "scale", Vector2(1.0, 1.0), 0.1)
+
+# Prime Effect Display
+
+func _on_prime_effect_applied(actor: Actor, effect: PrimeEffect) -> void:
+	"""Handle when a prime effect is applied to an actor"""
+	_update_prime_effect_display(actor)
+
+func _on_prime_effect_detonated(actor: Actor, effect: PrimeEffect) -> void:
+	"""Handle when a prime effect is detonated on an actor"""
+	_update_prime_effect_display(actor)
+
+func _update_prime_effect_display(actor: Actor) -> void:
+	"""Update the prime effect icons above an actor's portrait"""
+	var prime_container = _get_or_create_prime_container(actor)
+	if not prime_container:
+		return
+	
+	# Clear existing prime icons
+	for child in prime_container.get_children():
+		child.queue_free()
+	
+	# Add icons for each active prime
+	var active_primes = actor.get_active_primes()
+	for i in range(active_primes.size()):
+		var prime = active_primes[i]
+		var icon = _create_prime_icon(prime)
+		if icon:
+			prime_container.add_child(icon)
+			# Position icons in a row above the actor
+			icon.position = Vector2(i * 25 - (active_primes.size() - 1) * 12.5, 0)
+
+func _get_or_create_prime_container(actor: Actor) -> Node2D:
+	"""Get or create the container for prime effect icons above an actor"""
+	var container_name = "PrimeEffects"
+	var existing_container = actor.get_node_or_null(container_name)
+	
+	if existing_container:
+		return existing_container
+	
+	# Create new container
+	var container = Node2D.new()
+	container.name = container_name
+	actor.add_child(container)
+	
+	# Position above the actor's sprite
+	var sprite = actor.get_node("PlayerSprite") if actor.team == "player" else actor.get_node("EnemySprite")
+	if sprite:
+		container.position = Vector2(0, -sprite.texture.get_height() - 10)
+	
+	return container
+
+func _create_prime_icon(effect: PrimeEffect) -> ColorRect:
+	"""Create a simple colored icon for a prime effect"""
+	var icon = ColorRect.new()
+	icon.size = Vector2(20, 20)
+	icon.color = effect.get_color()
+	
+	# Add a subtle glow effect
+	var glow = ColorRect.new()
+	glow.size = Vector2(24, 24)
+	glow.position = Vector2(-2, -2)
+	glow.color = Color(effect.get_color().r, effect.get_color().g, effect.get_color().b, 0.3)
+	icon.add_child(glow)
+	
+	# Add effect name as tooltip (visible on hover)
+	icon.tooltip_text = effect.get_display_name() + " (" + str(effect.duration) + " turns)"
+	
+	# Add a pulsing animation
+	_animate_prime_icon(icon)
+	
+	return icon
+
+func _animate_prime_icon(icon: ColorRect) -> void:
+	"""Add a subtle pulsing animation to prime effect icons"""
+	var tween = create_tween()
+	tween.set_loops()
+	tween.tween_property(icon, "modulate:a", 0.7, 1.0)
+	tween.tween_property(icon, "modulate:a", 1.0, 1.0)
+
+func _update_all_prime_displays() -> void:
+	"""Update prime effect displays for all actors"""
+	var all_actors = []
+	all_actors.append_array(party_manager.party_members)
+	all_actors.append_array(enemies.get_children().filter(func(n): return n is Actor))
+	
+	for actor in all_actors:
+		if actor and not actor.is_dead():
+			_update_prime_effect_display(actor)
